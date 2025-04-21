@@ -27,5 +27,5 @@ void EnterDigit(int& varlink, const string& label) {
 }
 
 int CalculateResult(int numberA, numberB, operation){
-    return numberA operation numberB
+    return numberA  numberB
 }
