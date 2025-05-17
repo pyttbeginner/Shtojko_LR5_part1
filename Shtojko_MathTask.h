@@ -1,31 +1,47 @@
-#ifndef _SHTOJKO_MATHTASK_H_
-#define _SHTOJKO_MATHTASK_H_
+#ifndef SURNAME_MATHTASK_H
+#define SURNAME_MATHTASK_H
 
 #include <string>
+#include <stdexcept>
+#include <cctype>
+
 using namespace std;
 
-bool UserInput(string input) {
+// Функция контроля ввода данных
+bool UserInput(const string& input) {
     if (input.empty()) return false;
-    try {
-        int number = stoi(input);
+
+    // Проверка на отрицательные числа (если они недопустимы)
+    if (input[0] == '-') return false;
+
+    // Проверка на наличие нецифровых символов
+    for (char c : input) {
+        if (!isdigit(c)) {
+            return false;
+        }
     }
-    catch(...) {
-        return false;
-    }
+
     return true;
 }
 
-void EnterDigit(int& varlink, const string& label) {
+// Метод ввода данных
+void EnterDigit(int& varLink, const string& label) {
     string raw_input;
-    cout<<label<<" = ";
+    cout << label << " = ";
     getline(cin, raw_input);
-    while(!UserInput(raw_input)) {
-        cout<<label<<" = ";
+
+    while (!UserInput(raw_input)) {
+        cout << "Ошибка ввода! Пожалуйста, введите целое положительное число.\n";
+        cout << label << " = ";
         getline(cin, raw_input);
     }
-    varlink = stoi(raw_input);
+
+    varLink = stoi(raw_input);
 }
 
-int CalculateResult(int numberA, numberB, operation){
-    return numberA  numberB
+// Метод вычисления площади прямоугольника
+int CalcRectangleArea(int NumberA, int NumberB) {
+    return NumberA * NumberB;
 }
+
+#endif
